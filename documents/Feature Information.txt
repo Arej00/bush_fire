@@ -1,0 +1,31 @@
+Features:
+
+1) Geographic Features:
+a) Latitude and Longitude: The latitude of Australia ranges from -44 degrees to -10 degrees, and the longitude from 113 degrees to 154 degrees.
+
+2) Fire Intensity and Energy:
+a) Bright_ti4: Brightness temperature in Kelvin. The typical range is 300K-400K. The higher the more intense fire.
+b) Fire Radiative Power (frp): Energy output of the fire which is measured in megawatts (MW). It measures fire energy release. 
+c) Bright-ti5: Secondary brightness temperature channel, background temperature reference.
+
+3) Detection Quality:
+a) Confidence: Detection confidence (was n/l/h) and I converted to 50% (low), 75% (normal), 90% (high). It’s about the reliability of the fire
+
+4) Temporal Features:
+a) Acq_date,acq_time: Acquisition date and time of satellite detection. Extracted year, month, day_of_year which is important for seasonal analysis. 
+
+5) Satellite metadata:
+a) Satellite,  instrument: What satellite/instrument made detection. 
+
+Engineered Features:
+
+1) Month (1-12), day of year (1-365), week_of_year (1-52)
+2) Acq_hour: Hour of Detection
+3) Fire_intensity: It categorizes fire intensity based on bright_ti4. So, Low: <320K, Medium: 320-340K, high: 340-360K, and Extreme:>360K
+4) Seasons: Summer (Dec-Feb), Autumn (MAr-May), Winter(Jun-Aug), Spring(Sep-Nov)
+5) Region: Southern (Tasmania, Victoria, Southern NSW [-44 degree to -28 degree]); 
+Central(NSW, SA, southern QLD [-28 degree to -20 degree]); Northern (Northern QLD, NT, WA [-20 to -10])
+6) Binary Indicators: 
+a) Is_daytime: Weather detection occured during daytime or night. 1 (Day) and 0 (Night)
+b) Is_summer: Weather detection occurred in summer. 1 (Summer), 0 (Other Season)
+7) severity_classification: FPR<10 MW: Small Fires, 10<FPR<50: Moderate fires,FPR>50:Large fires
